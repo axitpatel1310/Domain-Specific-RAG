@@ -50,6 +50,16 @@
             "role": "assistant",
             "content": "I'm functioning properly and ready to assist.\n\nSources:\n- Conversation History",
             "timestamp": "2026-06-08 16:16:50"
+        },
+        {
+            "role": "user",
+            "content": "what was my last prompt",
+            "timestamp": "2026-06-10 18:35:47"
+        },
+        {
+            "role": "assistant",
+            "content": "Your last question was \"How are you?\"",
+            "timestamp": "2026-06-10 18:35:47"
         }
     ]
 }
