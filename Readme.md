@@ -1,161 +1,265 @@
-# Educational RAG Chatbot for Personalized Learning
+# DS-RAG: Educational Retrieval-Augmented Generation System
 
 ## Overview
 
-This project is an AI-powered Educational Retrieval-Augmented Generation (RAG) chatbot designed to help learners study technical subjects such as Machine Learning, Deep Learning, Artificial Intelligence, and Large Language Models.
+DS-RAG is an AI-powered Educational Retrieval-Augmented Generation (RAG) system designed to provide personalized learning experiences for students studying technical subjects such as:
 
-Unlike a traditional chatbot, this system combines:
+* Machine Learning
+* Deep Learning
+* Artificial Intelligence
+* Large Language Models
+* Data Science
+* Software Engineering
 
-* Document-based knowledge retrieval
-* Conversational memory
-* Personalized learning support
-* User learning analytics
-* Future recommendation systems
+Unlike traditional chatbots that simply answer questions, DS-RAG aims to become an intelligent educational assistant capable of:
 
-The long-term goal is to build an intelligent learning companion capable of understanding what a learner knows, what they struggle with, and what they should learn next.
+* Understanding learning materials
+* Remembering previous conversations
+* Tracking learning progress
+* Generating personalized insights
+* Recommending future study topics
+
+This project is being developed as an MSc Final Year Project exploring how Retrieval-Augmented Generation, conversational memory, and learning analytics can be combined to create adaptive educational AI systems.
 
 ---
 
-## Current Features
+# Features
 
-### 1. Document Ingestion
+## 1. User Authentication
+
+The platform supports user registration and login.
+
+Features:
+
+* User registration
+* User login
+* Session management
+* Individual learning profiles
+
+Each learner has a dedicated account and personalized learning history.
+
+---
+
+## 2. Document Ingestion Pipeline
 
 The system can ingest educational resources such as:
 
-* PDF files
+* PDF textbooks
 * Research papers
-* Text documents
+* Lecture notes
+* Technical documentation
 
-Documents are processed, chunked, embedded, and stored inside a vector database for semantic retrieval.
+The ingestion pipeline:
+
+1. Loads documents
+2. Splits content into chunks
+3. Generates embeddings
+4. Stores embeddings inside ChromaDB
+
+This creates a searchable knowledge base for learning.
 
 ---
 
-### 2. Retrieval-Augmented Generation (RAG)
+## 3. Retrieval-Augmented Generation (RAG)
 
-When a user asks a question:
+When a learner asks a question:
 
 1. Relevant document chunks are retrieved.
-2. Context is sent to the LLM.
-3. The model generates an answer grounded in the uploaded learning material.
+2. Retrieved context is provided to the language model.
+3. The model generates a grounded response.
 
-This reduces hallucinations and improves factual accuracy.
+Benefits:
+
+* Reduced hallucinations
+* Higher factual accuracy
+* Answers based on uploaded learning material
 
 ---
 
-### 3. Conversational Memory
+## 4. Conversational Memory
 
-The chatbot stores user conversations locally.
+The chatbot stores conversation history for each learner.
 
-This allows the assistant to:
+This allows the system to:
 
-* Remember previous discussions
 * Maintain context across sessions
-* Personalize future interactions
+* Remember previous discussions
+* Provide personalized responses
+* Support long-term learning interactions
+
+Conversation histories are stored locally and linked to user profiles.
 
 ---
 
-### 4. User Profiles
+## 5. Personalized Learning Profiles
 
-Each user has a dedicated conversation history.
+Each learner develops a unique educational profile over time.
 
-The chatbot can use this information to:
+The system can identify:
 
-* Track learning progress
-* Understand recurring interests
-* Provide more personalized responses
+* Topics studied
+* Recurring interests
+* Learning patterns
+* Areas requiring further practice
+
+Example:
+
+```text
+Profile: akky
+
+Topics Discussed:
+- Neural Networks
+- Backpropagation
+- RNNs
+- Attention Mechanisms
+- Transformers
+```
 
 ---
 
-## Tech Stack
+## 6. Web-Based Interface
 
-### Language
+The application includes a Flask frontend that provides:
+
+* User authentication pages
+* Chat interface
+* Session support
+* Personalized interactions
+
+Current Pages:
+
+* Login Page
+* Registration Page
+* Chat Interface
+
+---
+
+# System Architecture
+
+```text
+User
+ │
+ ▼
+Flask Web Interface
+ │
+ ▼
+Authentication Layer
+ │
+ ▼
+Chatbot Engine
+ │
+ ├── Retrieval System (RAG)
+ │
+ ├── Conversation Memory
+ │
+ └── Learning Intelligence
+         │
+         ▼
+      Future Analytics
+```
+
+---
+
+# Technology Stack
+
+## Backend
 
 * Python
+* Flask
 
-### LLM
+## Language Models
 
 * Ollama
 * Llama Models
 
-### Embeddings
+## Embeddings
 
 * Ollama Embeddings
 
-### Vector Database
-
-* ChromaDB
-
-### Frameworks
+## Frameworks
 
 * LangChain
 
-### Storage
+## Vector Database
 
-* Local JSON Memory
+* ChromaDB
+
+## Storage
+
+* SQLite
+* JSON Memory Files
 * Chroma Vector Store
 
 ---
 
-## Project Structure
+# Project Structure
 
 ```text
-project/
+DS-RAG/
 │
-├── chatbot.py
-├── ingest.py
-├── vectorstore/
-├── data/
-├── conversations/
+├── app.py                 # Flask application
+├── chatbot.py             # Main chatbot logic
+├── ingest.py              # Document ingestion
+├── vectorstore.py         # ChromaDB operations
 │
-├── README.md
+├── auth.py                # Authentication logic
+├── database.py            # Database operations
+├── init_db.py             # Database initialization
+├── config.py              # Configuration settings
 │
-└── requirements.txt
+├── memory.py              # Conversation memory
+├── learning.py            # Learning analytics
+│
+├── database.db            # SQLite database
+│
+├── data/                  # Source documents
+├── vectorstore/           # Chroma storage
+├── conversations/         # User histories
+│
+├── templates/
+│   ├── login.html
+│   ├── register.html
+│   └── index.html
+│
+├── requirements.txt
+└── README.md
 ```
-
-### Folder Description
-
-| Folder         | Purpose                            |
-| -------------- | ---------------------------------- |
-| data/          | Source PDFs and learning materials |
-| vectorstore/   | Chroma vector database             |
-| conversations/ | User conversation history          |
-| ingest.py      | Document ingestion pipeline        |
-| chatbot.py     | Main chatbot application           |
 
 ---
 
-## Setup
+# Installation
 
-### 1. Clone Repository
+## 1. Clone Repository
 
 ```bash
 git clone <repository-url>
-
-cd project
+cd DS-RAG
 ```
 
-### 2. Install Dependencies
+## 2. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Start Ollama
+## 3. Start Ollama
 
 ```bash
 ollama serve
 ```
 
-Pull the required models:
+Pull required models:
 
 ```bash
 ollama pull llama3
 ollama pull nomic-embed-text
 ```
 
-### 4. Ingest Documents
+---
 
-Place PDFs inside:
+## 4. Ingest Learning Materials
+
+Place PDF files inside:
 
 ```text
 data/
@@ -167,58 +271,81 @@ Run:
 python ingest.py
 ```
 
-### 5. Start Chatbot
+---
+
+## 5. Initialize Database
 
 ```bash
-python chatbot.py
+python init_db.py
 ```
 
 ---
 
-## Example Questions
+## 6. Run Application
+
+```bash
+python app.py
+```
+
+Open:
+
+```text
+http://localhost:5000
+```
+
+---
+
+# Example Questions
 
 ```text
 What is gradient descent?
 
-Explain the attention mechanism.
+Explain backpropagation.
 
-What are the limitations of RNNs?
+Why do RNNs struggle with long sequences?
+
+How does self-attention work?
 
 Compare CNNs and Vision Transformers.
 
-Summarize the chapter I uploaded.
+Summarize the uploaded chapter.
 ```
 
 ---
 
-## Roadmap
+# Roadmap
 
-### Phase 1 — Core RAG System ✅
+## Phase 1 — Core Educational RAG System ✅
 
-* [x] Document ingestion
-* [x] Vector database
-* [x] Retrieval pipeline
-* [x] Conversational memory
+Completed:
+
+* User authentication
+* Document ingestion
+* Embeddings generation
+* ChromaDB integration
+* Retrieval pipeline
+* Conversational memory
+* Flask web interface
 
 ---
 
-### Phase 2 — Conversational Summaries 🚧
+## Phase 2 — Conversational Summaries 🚧
 
 Goal:
 
-Compress long conversation histories into learning summaries.
+Compress conversation history into educational summaries.
 
 Example:
 
 ```text
-User learned:
+User Learned:
 - Neural Networks
+- Gradient Descent
 - Backpropagation
-- Attention Mechanisms
 
-User struggles with:
-- Vanishing gradients
-- Sequence modeling
+Current Difficulties:
+- Vanishing Gradients
+- Sequence Modeling
 ```
 
 Benefits:
@@ -229,75 +356,85 @@ Benefits:
 
 ---
 
-### Phase 3 — Learning Analytics Dashboard 📋
+## Phase 3 — Learning Analytics Dashboard 🚧
 
 Goal:
 
-Create a learner profile that tracks:
+Create a learner profile that tracks educational progress.
+
+Metrics:
 
 * Topics studied
 * Learning depth
-* Knowledge progression
-* Areas requiring revision
+* Knowledge growth
+* Revision requirements
 
 Example:
 
 ```text
-Machine Learning: 80%
-Deep Learning: 55%
-Transformers: 40%
-LLMs: 25%
+Machine Learning: 85%
+Deep Learning: 65%
+Transformers: 45%
+LLMs: 20%
 ```
 
 ---
 
-### Phase 4 — Learning Path Recommendations 📋
+## Phase 4 — Recommendation Engine 🚧
 
 Goal:
 
-Recommend what the learner should study next.
+Recommend future study topics based on learning history.
 
-Examples:
+Example:
 
 ```text
-You have mastered RNNs.
+Completed:
+✓ Neural Networks
 
-Suggested next topic:
+Recommended Next:
+→ Backpropagation
+→ Optimization Algorithms
+```
+
+```text
+Completed:
+✓ RNNs
+
+Recommended Next:
 → Attention Mechanisms
-
-You understand Transformers.
-
-Suggested next topic:
-→ Retrieval-Augmented Generation
+→ Transformers
 ```
 
 ---
 
-### Phase 5 — Intelligent Educational Assistant 📋
+## Phase 5 — Intelligent Educational Assistant 🚧
 
-Future vision:
+Long-Term Vision:
 
-An AI tutor that can:
+An AI tutor capable of:
 
-* Remember long-term learning history
-* Track knowledge growth
-* Recommend study plans
-* Generate quizzes
-* Identify knowledge gaps
-* Act as a personalized AI mentor
-
----
-
-## Research Objective
-
-This project investigates how Retrieval-Augmented Generation, conversational memory, and learning analytics can be combined to create more personalized educational AI systems.
-
-The aim is to move beyond simple question-answering and towards adaptive AI tutoring systems that support long-term learning.
+* Remembering long-term learning history
+* Tracking learner progress
+* Identifying knowledge gaps
+* Generating quizzes
+* Creating personalized study plans
+* Recommending learning paths
+* Acting as an adaptive educational mentor
 
 ---
 
-## Author
+# Research Objective
 
-Axit Patel
+The objective of this project is to investigate how Retrieval-Augmented Generation (RAG), conversational memory, learning analytics, and recommendation systems can be integrated to create adaptive educational AI systems.
+
+The research focuses on moving beyond simple question-answering systems toward intelligent tutoring systems that support long-term learning and skill development.
+
+---
+
+# Author
+
+**Axit Patel**
 MSc Final Year Project
+
 Educational AI & Retrieval-Augmented Generation Systems
